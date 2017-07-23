@@ -1,3 +1,3 @@
 # parsing
-Log parsing
-This is a repo for updating log parsing scripts. For now it is primarily based on powershell.
+This is a repo for log parsing scripts. The format is custom and is not meant for general purpose parsing.
+For now it is primarily based on powershell.
