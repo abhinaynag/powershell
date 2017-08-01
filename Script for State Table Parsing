@@ -2,7 +2,7 @@
 Set-Content -Path "out4.txt" -Value "**BRIEF**`n`n";
 Add-Content -Path "out4.txt" -Value "* DateTime: "
 sls -Path "out.txt" -Pattern "(\d{2}\/\d{2}\/\d{2}\s\d{2}:\d{2}:\d{2})\s" | % {$_.Matches} | % {$_.Value} | ForEach-Object {[datetime]$_ } | Sort-Object -descending |  Select-Object -first 1 |  Add-Content "out4.txt";
-Add-Content -Path "out4.txt" -Value "* Sensor: " |  remove (`n)
+Add-Content -Path "out4.txt" -Value "* Sensor: " 
 (sls -Path "out.txt" -Pattern "\sesm(\w+)?(\W+)?(\w+)?\s"-AllMatches | % {$_.Matches} | % {$_.Value} | Sort-Object -Unique) -join "," | Add-Content "out4.txt";
 Add-Content -Path "out4.txt" -Value "`n* SID & Signature Name:"
 sls -Path "out.txt" -Pattern "((snort:\s\[1:\d+:\d+\]).*: \d{1}\])"-AllMatches | % {$_.Matches} | % {$_.Value} | Sort-Object -Unique | ForEach-Object { $_ -replace "(?=snort: \[1:\d+:\d+\].*: \d{1}\])" , "`n`t*" } | Add-Content "out4.txt";
